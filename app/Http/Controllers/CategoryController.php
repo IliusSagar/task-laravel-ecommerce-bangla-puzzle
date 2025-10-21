@@ -13,8 +13,8 @@ class CategoryController extends Controller
     use CategoryStoreTrait;
     public function index()
     {
-        $categories = Category::with(['creator:id,name']) 
-            ->select('id','name', 'slug', 'created_by') 
+        $categories = Category::with(['creator:id,name'])
+            ->select('id', 'name', 'slug', 'created_by')
             ->latest()
             ->get();
 
@@ -32,5 +32,13 @@ class CategoryController extends Controller
         $this->storeCategory($request);
 
         return redirect()->route('category.index')->with('success', 'Category created successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('category.index')->with('success', 'Category deleted successfully!');
     }
 }
