@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/subcategory/index', [SubCategoryController::class,'index'])->name('subcategory.index');
     Route::get('/subcategory/create', [SubCategoryController::class,'create'])->name('subcategory.create');
     Route::post('/subcategory/store', [SubCategoryController::class,'store'])->name('subcategory.store');
+    Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
 
 });
 
