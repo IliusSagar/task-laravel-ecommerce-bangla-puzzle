@@ -1,52 +1,239 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Register</title>
+
+
+    <script src="{{ asset('backend/plugins/jquery/jquery.min.js')}}"></script>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css')}}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@16.0.2/build/css/intlTelInput.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@16.0.2/build/js/intlTelInput.js"></script>
+
+    <style>
+        /* CSS for screens between 250px and 400px */
+        @media only screen and (min-width: 250px) and (max-width: 380px) {
+            .phone {
+                width: 243px !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <!-- <a href="../../index2.html"><b>SELAI</b> DIDIMONI</a> -->
+            <h3>Admin - Register</h3>
         </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <!-- <p class="login-box-msg">LOG IN</p> -->
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                <form action="{{route('register')}}" class="mt-5" method="post">
+                    @csrf
+                     <div class="input-group mb-3">
+                        <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off" style="width: 280px;">
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                        <span style="color: red;">
+                            @error('name')
+                            {{$message}}
+                            @enderror
+                        </span>
+
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="email" name="email" class="form-control" placeholder="Email" autocomplete="off" style="width: 280px;">
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                        <span style="color: red;">
+                            @error('email')
+                            {{$message}}
+                            @enderror
+                        </span>
+
+
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" name="password" class="form-control" placeholder="Password" autocomplete="off" id="password-field">
+
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span toggle="#password-field" class="fas fa-eye field-icon toggle-password"></span>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                    
+
+                    <div style="margin-top: -10px;">
+                        <span style="color: red;">
+                            @error('password')
+                            {{$message}}
+                            @enderror
+                        </span></center>
+                    </div>
+
+                     <div class="input-group mb-3">
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation" autocomplete="off" id="password-field">
+
+                       
+
+
+
+
+                    </div>
+                    
+
+                    <div style="margin-top: -10px;">
+                        <span style="color: red;">
+                            @error('password_confirmation')
+                            {{$message}}
+                            @enderror
+                        </span></center>
+                    </div>
+
+                    <div class="mt-3 text-center mb-2">
+                        <a href="{{ route('login') }}" class="text-decoration-none text-primary fw-semibold">
+                            You have an account? Login now
+                        </a>
+                    </div>
+
+                    <!-- /.col -->
+                    <center>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                    </center>
+                    <!-- /.col -->
+            </div>
+            </form>
+
+
+            <!-- /.social-auth-links -->
+
+
         </div>
+        <!-- /.login-card-body -->
+    </div>
+    </div>
+    <!-- /.login-box -->
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <!-- jQuery -->
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('backend/dist/js/adminlte.min.js')}}"></script>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+    @if(Session::has('success'))
+    <script>
+        toastr.success("{{ session("
+            success ") }}");
+    </script>
+    @endif
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+    @if(Session::has('error'))
+    <script>
+        toastr.error("{{ session("
+            error ") }}");
+    </script>
+    @endif
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <script>
+        $(document).ready(function() {
+            var input = document.querySelector("#phone");
+            var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+            var errorMsg = document.querySelector("#error-msg");
+            var validMsg = document.querySelector("#valid-msg");
+
+            var iti = window.intlTelInput(input, {
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                geoIpLookup: function(callback) {
+                    $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                        var countryCode = (resp && resp.country) ? resp.country : "";
+                        callback(countryCode);
+                    });
+                },
+
+                onlyCountries: ['bd'],
+
+            });
+
+            $(validMsg).addClass("hide");
+
+            input.addEventListener('blur', function() {
+                reset();
+                if (input.value.trim()) {
+                    if (iti.isValidNumber()) {
+                        validMsg.classList.remove("hide");
+                    } else {
+                        input.classList.add("error");
+                        var errorCode = iti.getValidationError();
+                        errorMsg.innerHTML = errorMap[errorCode];
+                        errorMsg.classList.remove("hide");
+                    }
+                }
+            });
+
+            function reset() {
+                input.classList.remove("error");
+                errorMsg.innerHTML = "";
+                errorMsg.classList.add("hide");
+                validMsg.classList.add("hide");
+            }
+
+            $("#phone").val("");
+        });
+    </script>
+
+    <script>
+        $(".toggle-password").click(function() {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
