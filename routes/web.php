@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
     Route::get('/subcategory/edit/{id}', [SubCategoryController::class,'edit'])->name('subcategory.edit');
     Route::post('/subcategory/update/{id}', [SubCategoryController::class,'update'])->name('subcategory.update');
+
+    // Product Controller
+    Route::get('/product/index', [ProductController::class,'index'])->name('product.index');
+    Route::get('/product/create', [ProductController::class,'create'])->name('product.create');
+    Route::post('/product/store', [ProductController::class,'store'])->name('product.store');
+    Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('get.subcategories');
+
 
 });
 
