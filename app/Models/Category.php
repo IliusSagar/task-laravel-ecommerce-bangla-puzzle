@@ -11,4 +11,9 @@ class Category extends Model
         'slug',
         'created_by',
     ];
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }

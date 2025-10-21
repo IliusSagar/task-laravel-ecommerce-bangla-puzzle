@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     public function index(){
-       $categories = Category::latest()->get();
+       $categories = Category::with('creator')->latest()->get();
         return view('backend.category.index', compact('categories'));
     }
 
