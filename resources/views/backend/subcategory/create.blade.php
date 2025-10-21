@@ -9,7 +9,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
           
-            <h1><span class="text-danger" style="border-bottom: 1px dotted red;">Create Category</span></h1>
+            <h1><span class="text-danger" style="border-bottom: 1px dotted red;">Create Subcategory</span></h1>
           </div>
         
         </div>
@@ -29,15 +29,29 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('category.store') }}" method="post" >
+              <form action="{{ route('subcategory.store') }}" method="post" >
               @csrf
 
                 <div class="card-body">
 
-               
+               <div class="form-group">
+                <label class="custom-label">Category Name <code>*</code></label>
+                <select name="category_id" class="form-control">
+                <option value="">Select Category</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+           
+                <span style="color: red;">
+                        @error('category_id')
+                            {{$message}}
+                        @enderror
+                    </span>
+                </div>
 
                 <div class="form-group">
-                <label class="custom-label">Category Name <code>*</code></label>
+                <label class="custom-label">Sub Category Name <code>*</code></label>
                 <input type="text" name="name" class="form-control" >
            
                 <span style="color: red;">
