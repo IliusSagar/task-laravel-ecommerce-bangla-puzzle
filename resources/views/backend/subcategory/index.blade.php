@@ -62,7 +62,7 @@
 
                                         <td>
 
-                                            <a href="" class="btn btn-info"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ route('subcategory.edit',$row->id)}}" class="btn btn-info"><i class="fa fa-edit"></i></a>
 
 
                                             <a href="{{ route('subcategory.delete',$row->id)}}" class="btn btn-danger" id="delete"><i class="fa fa-trash"></i></a>
