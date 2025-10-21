@@ -11,19 +11,24 @@ use App\Traits\CategoryStoreTrait;
 class CategoryController extends Controller
 {
     use CategoryStoreTrait;
-    public function index(){
-       $categories = Category::with('creator')->latest()->get();
+    public function index()
+    {
+        $categories = Category::with(['creator:id,name']) 
+            ->select('id','name', 'slug', 'created_by') 
+            ->latest()
+            ->get();
+
         return view('backend.category.index', compact('categories'));
     }
 
-     public function create()
+    public function create()
     {
         return view('backend.category.create');
     }
 
     public function store(StoreCategoryRequest $request)
     {
-       
+
         $this->storeCategory($request);
 
         return redirect()->route('category.index')->with('success', 'Category created successfully!');
