@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Traits\CategoryStoreTrait;
 
 class CategoryController extends Controller
 {
+    use CategoryStoreTrait;
     public function index(){
        $categories = Category::with('creator')->latest()->get();
         return view('backend.category.index', compact('categories'));
@@ -18,17 +21,10 @@ class CategoryController extends Controller
         return view('backend.category.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:categories,name|max:255',
-        ]);
-
-        Category::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
-            'created_by' => auth()->id(),
-        ]);
+       
+        $this->storeCategory($request);
 
         return redirect()->route('category.index')->with('success', 'Category created successfully!');
     }
