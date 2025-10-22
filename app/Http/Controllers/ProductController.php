@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['category', 'subcategory', 'creator'])->latest()->paginate(10);
+        $products = Product::with(['category', 'subcategory', 'creator'])->latest()->get();
 
         return view("backend.product.index", compact("products"));
     }
