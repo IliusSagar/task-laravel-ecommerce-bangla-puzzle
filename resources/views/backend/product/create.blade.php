@@ -2,6 +2,13 @@
 
 @section('content')
 
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -74,11 +81,11 @@
 
                                 <div class="form-group">
                                     <label class="custom-label">Description <code>(optional)</code></label>
-                                    <input type="text" name="description" class="form-control">
+                                    <textarea name="description" id="description" class="form-control summernote">{{ old('description', $product->description ?? '') }}</textarea>
 
                                     <span style="color: red;">
                                         @error('description')
-                                        {{$message}}
+                                        {{ $message }}
                                         @enderror
                                     </span>
                                 </div>
@@ -170,6 +177,24 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        $('.summernote').summernote({
+            placeholder: 'Write product description...',
+            tabsize: 2,
+            height: 200,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
+            ]
+        });
+    });
+</script>
 
 
 @endsection
