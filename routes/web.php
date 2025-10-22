@@ -18,28 +18,29 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Category Controller
-    Route::get('/category/index', [CategoryController::class,'index'])->name('category.index');
-    Route::get('/category/create', [CategoryController::class,'create'])->name('category.create');
-    Route::post('/category/store', [CategoryController::class,'store'])->name('category.store');
+    Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
-    Route::get('/category/edit/{id}', [CategoryController::class,'edit'])->name('category.edit');
-    Route::post('/category/update/{id}', [CategoryController::class,'update'])->name('category.update');
+    Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 
     // Subcategory Controller
-    Route::get('/subcategory/index', [SubCategoryController::class,'index'])->name('subcategory.index');
-    Route::get('/subcategory/create', [SubCategoryController::class,'create'])->name('subcategory.create');
-    Route::post('/subcategory/store', [SubCategoryController::class,'store'])->name('subcategory.store');
+    Route::get('/subcategory/index', [SubCategoryController::class, 'index'])->name('subcategory.index');
+    Route::get('/subcategory/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
+    Route::post('/subcategory/store', [SubCategoryController::class, 'store'])->name('subcategory.store');
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.delete');
-    Route::get('/subcategory/edit/{id}', [SubCategoryController::class,'edit'])->name('subcategory.edit');
-    Route::post('/subcategory/update/{id}', [SubCategoryController::class,'update'])->name('subcategory.update');
+    Route::get('/subcategory/edit/{id}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
+    Route::post('/subcategory/update/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
 
     // Product Controller
-    Route::get('/product/index', [ProductController::class,'index'])->name('product.index');
-    Route::get('/product/create', [ProductController::class,'create'])->name('product.create');
-    Route::post('/product/store', [ProductController::class,'store'])->name('product.store');
+    Route::get('/product/index', [ProductController::class, 'index'])->name('product.index');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('/get-subcategories/{category_id}', [ProductController::class, 'getSubcategories'])->name('get.subcategories');
-
-
+    Route::get('/product/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+    Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
